@@ -6,6 +6,7 @@ import Insertion from "@/components/sortAlgos/Insertion";
 import Merge from "@/components/sortAlgos/Merge";
 import Quick from "@/components/sortAlgos/Quick";
 import Selection from "@/components/sortAlgos/Selection";
+import Link from "next/link";
 
 const sortAlgos: Algorithm[] = [
   {
@@ -33,6 +34,9 @@ const sortAlgos: Algorithm[] = [
 const Component = () => {
   return (
     <div className="w-full h-full flex flex-col justify-evenly items-center">
+      <Link href="/" className="btn btn-warning absolute left-24 top-24">
+        Home
+      </Link>
       <div className="text-6xl font-bold">Sort Algorithms</div>
       <TabDescriptor algorithms={sortAlgos} />
     </div>
