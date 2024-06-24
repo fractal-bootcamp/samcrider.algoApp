@@ -20,9 +20,10 @@ const TabDescriptor = ({ algorithms }: Algorithms) => {
   return (
     <div className={s.container}>
       <div className={s.buttonContainer}>
-        {algorithms.map((algo) => {
+        {algorithms.map((algo, i) => {
           return (
             <button
+              key={i}
               className={s.button}
               style={
                 currentTab.name === algo.name
