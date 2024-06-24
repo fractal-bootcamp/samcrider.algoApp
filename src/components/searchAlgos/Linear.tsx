@@ -21,7 +21,7 @@ const Linear = () => {
 
   useEffect(() => {
     const steps = linearSearch(defaultData, 7);
-    console.log(steps);
+
     setSteps(steps);
   }, []);
 
