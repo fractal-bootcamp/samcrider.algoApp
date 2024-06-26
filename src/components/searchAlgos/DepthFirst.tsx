@@ -158,7 +158,7 @@ const DepthFirst = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-row gap-6">
+      <div className="flex flex-row items-center gap-6">
         <div className="flex flex-col items-center gap-1">
           <div className="border-b-2 border-black">Number to Find</div>
           <div className="text-xl font-bold">6</div>
