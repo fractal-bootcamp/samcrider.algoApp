@@ -6,7 +6,7 @@ import { bubbleSort } from "@/algorithms/sorts/bubble";
 
 import { useEffect, useState } from "react";
 
-const defaultArray = [5, 3, 8, 4, 2];
+const defaultArray = [5, 3, 8, 4, 2, 1, 6, 9, 10, 7];
 // do it again if not sorted
 const Bubble = () => {
   const [array, setArray] = useState<number[]>(defaultArray);
@@ -19,38 +19,26 @@ const Bubble = () => {
   }, [array]);
 
   return (
-    <div className="flex flex-col items-start gap-4 p-4">
-      <div className="text-center w-full">gonna see some algos</div>
-      <button onClick={() => setArray(defaultArray)}>reset bubble sort</button>
-      <div className="flex">
-        {defaultArray.map((num, i) => {
-          return (
-            <div
-              key={i}
-              className="mx-px"
-              style={{
-                height: `${num * 10}px`,
-                width: "10px",
-                background: "blue",
-              }}
-            ></div>
-          );
-        })}
-      </div>
-      <div className="flex">
-        {array.map((num, i) => {
-          return (
-            <div
-              key={i}
-              className="mx-px"
-              style={{
-                height: `${num * 10}px`,
-                width: "10px",
-                background: "green",
-              }}
-            ></div>
-          );
-        })}
+    <div className="flex flex-col justify-evenly h-full w-full items-center">
+      <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-row gap-2 items-end">
+          {array.map((num, i) => {
+            return (
+              <div
+                key={i}
+                className="mx-px"
+                style={{
+                  height: `${num * 20}px`,
+                  width: "20px",
+                  background: "green",
+                }}
+              ></div>
+            );
+          })}
+        </div>
+        <button onClick={() => setArray(defaultArray)} className="btn">
+          Again
+        </button>
       </div>
     </div>
   );
