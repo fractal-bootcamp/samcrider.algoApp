@@ -6,51 +6,59 @@ import { bubbleSort } from "@/algorithms/sorts/bubble";
 
 import { useEffect, useState } from "react";
 
-const defaultArray = [5, 3, 8, 4, 2];
+const defaultArray = [10, 4, 7, 2, 3, 9, 8, 6, 1, 5];
 // do it again if not sorted
 const Bubble = () => {
   const [array, setArray] = useState<number[]>(defaultArray);
+  const [final, setFinal] = useState<boolean>(false);
 
   useEffect(() => {
     const { arr, swapped } = bubbleSort(array);
     if (swapped) {
       setTimeout(() => setArray(arr), 1000);
+      return;
     }
+    setFinal(true);
   }, [array]);
 
   return (
-    <div className="flex flex-col items-start gap-4 p-4">
-      <div className="text-center w-full">gonna see some algos</div>
-      <button onClick={() => setArray(defaultArray)}>reset bubble sort</button>
-      <div className="flex">
-        {defaultArray.map((num, i) => {
-          return (
-            <div
-              key={i}
-              className="mx-px"
-              style={{
-                height: `${num * 10}px`,
-                width: "10px",
-                background: "blue",
-              }}
-            ></div>
-          );
-        })}
-      </div>
-      <div className="flex">
-        {array.map((num, i) => {
-          return (
-            <div
-              key={i}
-              className="mx-px"
-              style={{
-                height: `${num * 10}px`,
-                width: "10px",
-                background: "green",
-              }}
-            ></div>
-          );
-        })}
+    <div className="flex flex-col justify-evenly h-full w-full items-center">
+      <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-row gap-2 items-end">
+          {array.map((num, i) => {
+            if (final) {
+              return (
+                <div
+                  key={i}
+                  className="mx-px bg-green-500"
+                  style={{
+                    height: `${num * 20}px`,
+                    width: "20px",
+                  }}
+                ></div>
+              );
+            }
+            return (
+              <div
+                key={i}
+                className="mx-px bg-red-500"
+                style={{
+                  height: `${num * 20}px`,
+                  width: "20px",
+                }}
+              ></div>
+            );
+          })}
+        </div>
+        <button
+          onClick={() => {
+            setArray(defaultArray);
+            setFinal(false);
+          }}
+          className="btn"
+        >
+          Again
+        </button>
       </div>
     </div>
   );
