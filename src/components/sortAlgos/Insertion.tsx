@@ -38,7 +38,7 @@ const Insertion = () => {
           {unsorted.map((num, i) => {
             return (
               <div
-                className="bg-red-500"
+                className="bg-red-500 mx-px"
                 style={{ height: `${num * 20}px`, width: "20px" }}
                 key={i}
               ></div>
