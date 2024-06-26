@@ -21,10 +21,10 @@ export const insertionSortWrapper = (unsortedArray: number[]): number[][] => {
       ) {
         // swap values
         array[compareIdx + 1] = array[compareIdx];
-        steps.push(array);
       }
       // insert the currElm one up from the comparison index
       array[compareIdx + 1] = currElm;
+      steps.push([...array]);
     }
 
     // return sorted array

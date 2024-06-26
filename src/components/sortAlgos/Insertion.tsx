@@ -35,7 +35,16 @@ const Insertion = () => {
     <div className="flex flex-col justify-evenly h-full w-full items-center">
       <div className="flex flex-col items-center gap-6">
         <div className="flex flex-row gap-2 items-end">
-          {unsorted.map((num, i) => {
+          {steps[counter].map((num, i) => {
+            if (counter === steps.length - 1) {
+              return (
+                <div
+                  className="bg-green-500 mx-px"
+                  style={{ height: `${num * 20}px`, width: "20px" }}
+                  key={i}
+                ></div>
+              );
+            }
             return (
               <div
                 className="bg-red-500 mx-px"
