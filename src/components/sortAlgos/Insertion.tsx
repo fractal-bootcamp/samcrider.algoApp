@@ -22,7 +22,6 @@ const Insertion = () => {
 
   useEffect(() => {
     const steps = insertionSortWrapper(unsorted);
-    console.log(steps);
     setSteps(steps);
   }, []);
 

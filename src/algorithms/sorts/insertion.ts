@@ -1,18 +1,14 @@
 export const insertionSortWrapper = (unsortedArray: number[]): number[][] => {
-  console.log("in wrapper", unsortedArray);
+  // copy array
+  let copyArray = [...unsortedArray];
   let steps: number[][] = [];
 
   const insertionSort = (array: number[]): number[] => {
-    // copy array
-    console.log("right before copying array", array);
-    let arrayBeingSorted: number[] = array;
-    console.log(arrayBeingSorted);
-
     // loop through array
     // start at one so we can access 0 in second loop
-    for (let i = 1; i < arrayBeingSorted.length; i++) {
+    for (let i = 1; i < array.length; i++) {
       // set current elm to be sorted
-      let currElm: number = arrayBeingSorted[i];
+      let currElm: number = array[i];
       // init comparison index
       let compareIdx: number;
 
@@ -20,23 +16,24 @@ export const insertionSortWrapper = (unsortedArray: number[]): number[][] => {
       // but only if they are greater than 0 and the current element
       for (
         compareIdx = i - 1;
-        arrayBeingSorted[compareIdx] > currElm && compareIdx > -1;
+        array[compareIdx] > currElm && compareIdx > -1;
         compareIdx--
       ) {
         // swap values
-        arrayBeingSorted[compareIdx + 1] = arrayBeingSorted[compareIdx];
-        steps.push(arrayBeingSorted);
+        array[compareIdx + 1] = array[compareIdx];
+        steps.push(array);
       }
       // insert the currElm one up from the comparison index
-      arrayBeingSorted[compareIdx + 1] = currElm;
+      array[compareIdx + 1] = currElm;
     }
 
     // return sorted array
-    return arrayBeingSorted;
+    return array;
   };
 
-  console.log("right before insertion sort starts", unsortedArray);
-  insertionSort(unsortedArray);
+  console.log("I haven't been sorted:", copyArray);
+  const sortedArray = insertionSort(copyArray);
+  console.log("I've been sorted:", sortedArray);
 
   return steps;
 };
