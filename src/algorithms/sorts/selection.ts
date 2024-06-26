@@ -25,6 +25,7 @@ export const selectionSortWrapper = (array: number[]): number[][] => {
       let temp: number = array[i];
       array[i] = array[lowestValIdx];
       array[lowestValIdx] = temp;
+      steps.push([...array]);
     }
 
     return array;
