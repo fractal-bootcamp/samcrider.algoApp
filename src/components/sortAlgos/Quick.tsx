@@ -2,7 +2,7 @@ import { quickSort, Step } from "@/algorithms/sorts/quick";
 import React, { useEffect, useState } from "react";
 
 // constants
-let unsorted: number[] = [10, 4, 7, 2, 3, 9, 8, 6, 1, 5];
+const unsorted: number[] = [10, 4, 7, 2, 3, 9, 8, 6, 1, 5];
 const sorted: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const defaultSteps: Step[] = [
   { stepArray: [0], pivot: 0 },
@@ -46,6 +46,9 @@ const Quick = () => {
             );
           })}
         </div>
+        <button className="btn" onClick={() => setCounter(0)}>
+          Again
+        </button>
       </div>
     </div>
   );
