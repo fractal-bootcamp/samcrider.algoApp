@@ -6,16 +6,19 @@ import { bubbleSort } from "@/algorithms/sorts/bubble";
 
 import { useEffect, useState } from "react";
 
-const defaultArray = [5, 3, 8, 4, 2, 1, 6, 9, 10, 7];
+const defaultArray = [10, 4, 7, 2, 3, 9, 8, 6, 1, 5];
 // do it again if not sorted
 const Bubble = () => {
   const [array, setArray] = useState<number[]>(defaultArray);
+  const [final, setFinal] = useState<boolean>(false);
 
   useEffect(() => {
     const { arr, swapped } = bubbleSort(array);
     if (swapped) {
       setTimeout(() => setArray(arr), 1000);
+      return;
     }
+    setFinal(true);
   }, [array]);
 
   return (
@@ -23,20 +26,37 @@ const Bubble = () => {
       <div className="flex flex-col items-center gap-6">
         <div className="flex flex-row gap-2 items-end">
           {array.map((num, i) => {
+            if (final) {
+              return (
+                <div
+                  key={i}
+                  className="mx-px bg-green-500"
+                  style={{
+                    height: `${num * 20}px`,
+                    width: "20px",
+                  }}
+                ></div>
+              );
+            }
             return (
               <div
                 key={i}
-                className="mx-px"
+                className="mx-px bg-red-500"
                 style={{
                   height: `${num * 20}px`,
                   width: "20px",
-                  background: "green",
                 }}
               ></div>
             );
           })}
         </div>
-        <button onClick={() => setArray(defaultArray)} className="btn">
+        <button
+          onClick={() => {
+            setArray(defaultArray);
+            setFinal(false);
+          }}
+          className="btn"
+        >
           Again
         </button>
       </div>
