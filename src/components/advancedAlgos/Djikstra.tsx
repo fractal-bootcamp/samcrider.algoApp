@@ -7,7 +7,7 @@ export type Node = {
   node: string;
   data: {
     d: number;
-    nodes: string[];
+    connection: string[];
   }[];
 };
 
@@ -16,13 +16,13 @@ export type Node = {
 // all connections with their distances
 const distances: {
   d: number;
-  nodes: string[];
+  connection: string[];
 }[] = [
-  { d: 1, nodes: ["A", "B"] },
-  { d: 2, nodes: ["A", "E"] },
-  { d: 1, nodes: ["B", "C"] },
-  { d: 2, nodes: ["E", "D"] },
-  { d: 2, nodes: ["D", "C"] },
+  { d: 1, connection: ["A", "B"] },
+  { d: 2, connection: ["A", "E"] },
+  { d: 1, connection: ["B", "C"] },
+  { d: 2, connection: ["E", "D"] },
+  { d: 2, connection: ["D", "C"] },
 ];
 
 // function that searches through distances and returns all that
@@ -34,7 +34,7 @@ const getDistances = (
   // get all distances where distance.nodes includes letter
   let allDistances: typeof distances = [];
   d.forEach((currD) => {
-    if (currD.nodes.includes(letter)) {
+    if (currD.connection.includes(letter)) {
       allDistances.push(currD);
     }
   });
@@ -65,7 +65,7 @@ const Djikstra = () => {
   const [counter, setCounter] = useState<number>(0);
 
   useEffect(() => {
-    const steps = wrappedDjikstra(graph);
+    const steps = wrappedDjikstra(graph, "A");
     setSteps(steps);
   }, []);
 
