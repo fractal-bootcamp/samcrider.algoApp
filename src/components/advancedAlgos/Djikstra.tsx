@@ -1,4 +1,7 @@
-import { wrappedDjikstra } from "@/algorithms/advanced/djikstra";
+import {
+  wrappedDjikstra,
+  WrappedDjikstraReturn,
+} from "@/algorithms/advanced/djikstra";
 import React, { useEffect, useState } from "react";
 import { GraphCanvas } from "reagraph";
 
@@ -48,7 +51,7 @@ const getNode = (letter: string): Node => {
 };
 
 // graph of nodes
-const graph: Node[] = [
+export const graph: Node[] = [
   getNode("A"),
   getNode("B"),
   getNode("C"),
@@ -56,24 +59,22 @@ const graph: Node[] = [
   getNode("E"),
 ];
 
-// default steps init
-// TODO: change any type
-const defaultSteps: any[] = [];
-
 const Djikstra = () => {
-  const [steps, setSteps] = useState(defaultSteps);
+  const [steps, setSteps] = useState<WrappedDjikstraReturn[]>([]);
   const [counter, setCounter] = useState<number>(0);
 
   useEffect(() => {
     const steps = wrappedDjikstra(graph, "A");
+    console.log("steps:", steps);
     setSteps(steps);
   }, []);
 
   useEffect(() => {
-    if (counter < steps.length - 1) {
+    if (counter < 6) {
+      console.log(counter);
       setTimeout(() => setCounter(counter + 1), 1000);
     }
-  }, [counter]);
+  }, [counter, steps]);
 
   return (
     <div className="flex flex-col justify-evenly h-full w-full items-center">
@@ -92,22 +93,41 @@ const Djikstra = () => {
               {
                 id: "n-1",
                 label: "A",
+                fill: "green",
               },
               {
                 id: "n-2",
                 label: "B",
+                fill: `${
+                  counter === 5 ? "yellow" : counter === 6 ? "green" : ""
+                }`,
               },
               {
                 id: "n-3",
                 label: "C",
+                fill: "green",
               },
               {
                 id: "n-4",
                 label: "D",
+                fill: `${
+                  counter === 3
+                    ? "yellow"
+                    : counter === 0 || counter === 1 || counter === 2
+                    ? ""
+                    : "red"
+                }`,
               },
               {
                 id: "n-5",
                 label: "E",
+                fill: `${
+                  counter === 2 || counter === 3
+                    ? "yellow"
+                    : counter === 0 || counter === 1
+                    ? ""
+                    : "red"
+                }`,
               },
             ]}
             edges={[
@@ -149,10 +169,7 @@ const Djikstra = () => {
             <div className="border-b-2 border-black">Find Shortest Path</div>
             <div className="text-xl font-bold">A {"->"} C</div>
           </div>
-          <button
-            className="btn"
-            // onClick={() => setCounter(0)}
-          >
+          <button className="btn" onClick={() => setCounter(0)}>
             Again
           </button>
         </div>

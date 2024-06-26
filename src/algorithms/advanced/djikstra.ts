@@ -1,10 +1,25 @@
-import { Node } from "@/components/advancedAlgos/Djikstra";
+import type { Node } from "@/components/advancedAlgos/Djikstra";
 
-export const wrappedDjikstra = (graph: Node[], start: string) => {
+type ShortestDistance = {
+  A?: number;
+  B?: number;
+  C?: number;
+  D?: number;
+  E?: number;
+};
+
+export type WrappedDjikstraReturn = {
+  closestNode: string;
+  shortestDistance: ShortestDistance;
+};
+
+export const wrappedDjikstra = (
+  graph: Node[],
+  start: string
+): WrappedDjikstraReturn[] => {
   // copy graph
   let copyGraph: Node[] = graph;
-  // TODO: change this type
-  let steps: any[] = [];
+  let steps: WrappedDjikstraReturn[] = [];
 
   const djikstra = (graph: Node[], start: string) => {
     // init obj to hold shortest distance to all nodes from start node
@@ -62,6 +77,7 @@ export const wrappedDjikstra = (graph: Node[], start: string) => {
           if (newDistance < shortestDistances[curr.connection[0]]) {
             // Update the shortest distance to this node
             shortestDistances[curr.connection[0]] = newDistance;
+            steps.push({ closestNode, shortestDistance: shortestDistances });
           }
 
           // if we haven't visited the connection node
@@ -73,6 +89,7 @@ export const wrappedDjikstra = (graph: Node[], start: string) => {
           if (newDistance < shortestDistances[curr.connection[1]]) {
             // Update the shortest distance to this node
             shortestDistances[curr.connection[1]] = newDistance;
+            steps.push({ closestNode, shortestDistance: shortestDistances });
           }
         }
       });
@@ -80,8 +97,7 @@ export const wrappedDjikstra = (graph: Node[], start: string) => {
     return shortestDistances;
   };
 
-  const result = djikstra(copyGraph, start);
-  console.log(result);
+  djikstra(copyGraph, start);
 
   return steps;
 };
