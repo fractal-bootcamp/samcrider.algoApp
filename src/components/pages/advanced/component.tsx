@@ -1,4 +1,4 @@
-import Djikstra from "@/components/advancedAlgos/Djikstra";
+import DynamicDjikstra from "@/components/advancedAlgos/DynamicDjisktra";
 import TabDescriptor, {
   Algorithm,
 } from "@/components/base/TabDescriptor/component";
@@ -7,7 +7,7 @@ import Link from "next/link";
 const advancedAlgos: Algorithm[] = [
   {
     name: "Djikstra",
-    component: <Djikstra />,
+    component: <DynamicDjikstra />,
   },
 ];
 
